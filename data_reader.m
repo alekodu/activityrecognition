@@ -44,7 +44,7 @@ tiledlayout(3,4);
 
 % Accelerometer data
 nexttile;
-plot(stillData(:,1), stillData(:,2:4));
+plot(stillData(:,1), stillData(:,2:4), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Acceleration [m/s^2]")
@@ -52,7 +52,7 @@ title("Standing: Accelerometer data")
 
 % Gyroscope data
 nexttile;
-plot(stillData(:,1), stillData(:,5:7));
+plot(stillData(:,1), stillData(:,5:7), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Angular velocity [rad/s]")
@@ -60,7 +60,7 @@ title("Standing: Gyroscope data")
 
 % Magnetometer data
 nexttile;
-plot(stillData(:,1), stillData(:,8:10));
+plot(stillData(:,1), stillData(:,8:10), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Magnetic field strength [uT]")
@@ -68,7 +68,7 @@ title("Standing: Magnetometer data")
 
 % GPS data
 nexttile;
-plot(stillData(:,1), stillData(:,11:13));
+plot(stillData(:,1), stillData(:,11:13), '.');
 legend("deg North", "deg East", "Alt m")
 xlabel("Timestamp [ms]")
 ylabel("Position [deg North, deg East, alt m]")
@@ -78,7 +78,7 @@ title("Standing: GPS data")
 
 % Accelerometer data
 nexttile;
-plot(walkData(:,1), walkData(:,2:4));
+plot(walkData(:,1), walkData(:,2:4), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Acceleration [m/s^2]")
@@ -86,7 +86,7 @@ title("Walking: Accelerometer data")
 
 % Gyroscope data
 nexttile;
-plot(walkData(:,1), walkData(:,5:7));
+plot(walkData(:,1), walkData(:,5:7), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Angular velocity [rad/s]")
@@ -94,7 +94,7 @@ title("Walking: Gyroscope data")
 
 % Magnetometer data
 nexttile;
-plot(walkData(:,1), walkData(:,8:10));
+plot(walkData(:,1), walkData(:,8:10), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Magnetic field strength [uT]")
@@ -102,7 +102,7 @@ title("Walking: Magnetometer data")
 
 % GPS data
 nexttile;
-plot(walkData(:,1), walkData(:,11:13));
+plot(walkData(:,1), walkData(:,11:13), '.');
 legend("deg North", "deg East", "Alt m")
 xlabel("Timestamp [ms]")
 ylabel("Position [deg North, deg East, alt m]")
@@ -112,7 +112,7 @@ title("Walking: GPS data")
 
 % Accelerometer data
 nexttile;
-plot(runData(:,1), runData(:,2:4));
+plot(runData(:,1), runData(:,2:4), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Acceleration [m/s^2]")
@@ -120,7 +120,7 @@ title("Running: Accelerometer data")
 
 % Gyroscope data
 nexttile;
-plot(runData(:,1), runData(:,5:7));
+plot(runData(:,1), runData(:,5:7), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Angular velocity [rad/s]")
@@ -128,7 +128,7 @@ title("Running: Gyroscope data")
 
 % Magnetometer data
 nexttile;
-plot(runData(:,1), runData(:,8:10));
+plot(runData(:,1), runData(:,8:10), '.');
 legend("x", "y", "z")
 xlabel("Timestamp [ms]")
 ylabel("Magnetic field strength [uT]")
@@ -136,7 +136,7 @@ title("Running: Magnetometer data")
 
 % GPS data
 nexttile;
-plot(runData(:,1), runData(:,11:13));
+plot(runData(:,1), runData(:,11:13), '.');
 legend("deg North", "deg East", "Alt m")
 xlabel("Timestamp [ms]")
 ylabel("Position [deg North, deg East, alt m]")
