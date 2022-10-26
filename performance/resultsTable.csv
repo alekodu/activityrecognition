@@ -1,0 +1,15 @@
+Session: untitled,,,,,,,
+Training Data: mergedData    Observations: 6189,,,,,,,
+"Predictors: 25    Predictor Names: column_1, column_2, column_3, column_4, column_5, column_6, column_7, column_8, column_9, column_10, column_11, column_12, column_13, column_22, column_23, column_24, column_25, column_26, column_27, column_28, column_29, column_30, column_31, column_32, column_33",,,,,,,
+"Response Name: classesVector    Response Classes: 3    Response Class Names: run, still, walk",,,,,,,
+Validation: 5-fold cross-validation,,,,,,,
+Test Data: mergedData    Observations: 687,,,,,,,
+,,,,,,,
+,,,,,,,
+Favorite,Model Number,Model Type,Status,Accuracy % (Validation),Total Cost (Validation),Accuracy % (Test),Total Cost (Test)
+1,8,Ensemble,Tested,95.7343674260785,264,96.6521106259097,23
+1,4,Naive Bayes,Tested,94.9426401680401,313,94.9053857350801,35
+1,1,Tree,Tested,86.7830021005009,818,89.8107714701601,70
+0,3.2,Discriminant,Tested,47.47132008402,3251,47.8893740902475,358
+0,7,Neural Network,Tested,47.47132008402,3251,47.8893740902475,358
+0,2,KNN,Tested,47.4228469865891,3254,47.7438136826783,359

@@ -176,6 +176,7 @@ walkSize = size(walkData);
 runSize = size(runData);
 
 maxLength = max([stillSize(1), walkSize(1), runSize(1)]);
+totalLenght = stillSize(1) + walkSize(1) + runSize(1);
 
 % A single vector for all 1. still, 2. walk and 3. run data
 acc = nan(maxLength, 3); 
@@ -276,3 +277,25 @@ grid on;
 xlabel("Activity")
 ylabel("2-norm(Position)")
 title("GPS data")
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Data preparation
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% TODO: Removing outliers
+
+% Merging data from all three activities
+mergedData = [stillData; walkData; runData];
+classesVector = strings(totalLenght, 1);
+
+for k = (1:totalLenght)
+    if k <= stillSize(1)
+        classesVector(k, 1) = "still";
+    end
+    if (k > stillSize(1)) && (k <= stillSize(1)+walkSize(1))
+        classesVector(k, 1) = "walk";
+    end
+    if (k > stillSize(1)+walkSize(1)) && (k <= stillSize(1)+walkSize(1)+runSize(1))
+        classesVector(k, 1) = "run";
+    end
+end
