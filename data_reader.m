@@ -25,7 +25,10 @@ import se.hendeby.sensordata.*;
 
 stillDataFile = FileSensorDataReader("./data/sensorLog_20221024T182616_standstill.txt");
 walkDataFile = FileSensorDataReader("./data/sensorLog_20221024T182709_walking_pocket.txt");
+%walkDataFile = FileSensorDataReader("./data/sensorLog_20221024T182635_walking_hand.txt");
 runDataFile = FileSensorDataReader("./data/sensorLog_20221024T182818_running_pocket.txt");
+%runDataFile = FileSensorDataReader("./data/sensorLog_20221024T182741_running_hand.txt");
+%runDataFile = FileSensorDataReader("./data/sensorLog_20221024T183036_walking_pocket_long_time.txt");
 
 stillDataFile.start();
 walkDataFile.start();
@@ -234,6 +237,41 @@ title("Magnetometer data")
 
 nexttile;
 boxplot(gps, classes);
+grid on;
+xlabel("Activity")
+ylabel("2-norm(Position)")
+title("GPS data")
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Generate violin plots (with estimated PDF)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+figure;
+tiledlayout(1,4);
+
+nexttile;
+violin(acc, 'xlabel', classes);
+grid on;
+xlabel("Activity")
+ylabel("2-norm(Acceleration Force)")
+title("Accelerometer data")
+
+nexttile;
+violin(gyr, 'xlabel', classes);
+grid on;
+xlabel("Activity")
+ylabel("2-norm(Angular Velocity)")
+title("Gyroscope data")
+
+nexttile;
+violin(mag, 'xlabel', classes);
+grid on;
+xlabel("Activity")
+ylabel("2-norm(Magnetic Force)")
+title("Magnetometer data")
+
+nexttile;
+violin(gps, 'xlabel', classes);
 grid on;
 xlabel("Activity")
 ylabel("2-norm(Position)")
