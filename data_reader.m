@@ -23,26 +23,41 @@
 
 import se.hendeby.sensordata.*;
 
+% Training & basic testing data
 stillDataFile = FileSensorDataReader("./data/sensorLog_20221024T182616_standstill.txt");
 walkDataFile = FileSensorDataReader("./data/sensorLog_20221024T182709_walking_pocket.txt");
-%walkDataFile = FileSensorDataReader("./data/sensorLog_20221024T182635_walking_hand.txt");
 runDataFile = FileSensorDataReader("./data/sensorLog_20221024T182818_running_pocket.txt");
-%runDataFile = FileSensorDataReader("./data/sensorLog_20221024T182741_running_hand.txt");
-%runDataFile = FileSensorDataReader("./data/sensorLog_20221024T183036_walking_pocket_long_time.txt");
+
+% Advanced testing data
+walkHandDataFile = FileSensorDataReader("./data/sensorLog_20221024T182635_walking_hand.txt");
+runHandDataFile = FileSensorDataReader("./data/sensorLog_20221024T182741_running_hand.txt");
+runPocketLongDataFile = FileSensorDataReader("./data/sensorLog_20221024T183036_walking_pocket_long_time.txt");
 
 stillDataFile.start();
 walkDataFile.start();
 runDataFile.start();
+
+walkHandDataFile.start();
+runHandDataFile.start();
+runPocketLongDataFile.start();
 
 % Normal measurement data
 stillDataFile.reset();
 walkDataFile.reset();
 runDataFile.reset();
 
+walkHandDataFile.reset();
+runHandDataFile.reset();
+runPocketLongDataFile.reset();
+
 % Typically group things separated less than half a period
 stillData = stillDataFile.getAll(5);
 walkData = walkDataFile.getAll(5);
 runData = runDataFile.getAll(5);
+
+walkHandData = walkHandDataFile.getAll(5);
+runHandData = runHandDataFile.getAll(5);
+runPocketLongData = runPocketLongDataFile.getAll(5);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Plot sensor data
@@ -282,7 +297,7 @@ title("GPS data")
 % Data preparation
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% TODO: Removing outliers
+% TODO: Remove outliers
 
 % Merging data from all three activities
 mergedData = [stillData; walkData; runData];
@@ -297,5 +312,24 @@ for k = (1:totalLenght)
     end
     if (k > stillSize(1)+walkSize(1)) && (k <= stillSize(1)+walkSize(1)+runSize(1))
         classesVector(k, 1) = "run";
+    end
+end
+
+% Merging extra data for advanced validation
+walkHandSize = size(walkHandData);
+runHandSize = size(runHandData);
+runPocketLongSize = size(runPocketLongData);
+
+valTotalLenght = walkHandSize(1) + runHandSize(1) + runPocketLongSize(1);
+
+valMergedData = [walkHandData; runHandData; runPocketLongData];
+valClassesVector = strings(valTotalLenght, 1);
+
+for k = (1:valTotalLenght)
+    if k <= walkHandSize(1)
+        valClassesVector(k, 1) = "walk";
+    end
+    if (k > walkHandSize(1)) && (k <= walkHandSize(1)+runHandSize(1)+runPocketLongSize(1))
+        valClassesVector(k, 1) = "run";
     end
 end
